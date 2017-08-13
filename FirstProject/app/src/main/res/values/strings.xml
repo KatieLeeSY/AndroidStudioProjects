@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">뭐먹지</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab1">홈</string>
+    <string name="tab2">내 주변</string>
+    <string name="tab3">찜</string>
+    <string name="tab4">검색</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
