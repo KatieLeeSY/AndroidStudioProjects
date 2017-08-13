@@ -80,7 +80,6 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer(false);
-
             }
         });
 
@@ -88,9 +87,13 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                if(mCurrentIndex >= 0 && mCurrentIndex < mQuestionBank.length - 1) {
+                    mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                    updateQuestion();
+                } else if (mCurrentIndex == mQuestionBank.length - 1){
+                    Toast.makeText(QuizActivity.this, R.string.lastpage_toast, Toast.LENGTH_SHORT).show();
+                }
                 mIsCheater = false;
-                updateQuestion();
             }
         });
 
@@ -98,13 +101,14 @@ public class QuizActivity extends AppCompatActivity {
         mBeforeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mCurrentIndex > 0 && mCurrentIndex < mQuestionBank.length) {
+                if(mCurrentIndex > 0 && mCurrentIndex < mQuestionBank.length - 1) {
                     mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                     updateQuestion();
                 } else if (mCurrentIndex == 0) {
                     Toast.makeText(QuizActivity.this, R.string.firstpage_toast, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(QuizActivity.this, R.string.lastpage_toast, Toast.LENGTH_SHORT).show();
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                    updateQuestion();
                 }
             }
         });
