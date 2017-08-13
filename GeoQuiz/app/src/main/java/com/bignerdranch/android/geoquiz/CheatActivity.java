@@ -46,8 +46,14 @@ public class CheatActivity extends AppCompatActivity {
                 } else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
+                setAnswerShowResult(true);
             }
         });
-
     }
+
+        private void setAnswerShowResult(boolean isAnswerShown) {
+            Intent data = new Intent();
+            data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
+            setResult(RESULT_OK, data);
+        }
 }
